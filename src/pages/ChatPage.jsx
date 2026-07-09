@@ -15,7 +15,7 @@ export default function ChatPage() {
   const streamingRef = useRef(false)
 
   const {
-    apiKey, model, userName, systemPromptOverride,
+    apiKey, model, userName, systemPromptOverride, persona,
     provider, secondMeUrl, secondMeContext, secondMeL0Retrieval, memoryEnabled,
   } = useAppStore()
 
@@ -102,7 +102,7 @@ export default function ChatPage() {
       })
     } else {
       abort = await streamMessage({
-        apiKey, model, userName, systemPromptOverride,
+        apiKey, model, userName, systemPromptOverride, persona,
         secondMeContext,
         memoryContext,
         messages: history,
@@ -114,7 +114,7 @@ export default function ChatPage() {
 
     abortRef.current = abort
   }, [
-    id, apiKey, model, userName, systemPromptOverride,
+    id, apiKey, model, userName, systemPromptOverride, persona,
     provider, secondMeUrl, secondMeContext, secondMeL0Retrieval, memoryEnabled,
     addMessage, startAssistantMessage, appendToLastMessage,
     finalizeAssistantMessage, updateTitle,

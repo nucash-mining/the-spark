@@ -8,6 +8,7 @@ export default function SettingsPanel({ onClose }) {
   const {
     apiKey, setApiKey, userName, setUserName,
     model, setModel, systemPromptOverride, setSystemPromptOverride,
+    persona, setPersona,
     provider, setProvider,
     secondMeUrl, setSecondMeUrl,
     secondMeContext, setSecondMeContext,
@@ -55,7 +56,8 @@ export default function SettingsPanel({ onClose }) {
   function nukeEverything() {
     clearAll()
     clearAllConversations()
-    window.location.href = '/welcome'
+    window.location.hash = '#/welcome'
+    window.location.reload()
   }
 
   return (
@@ -150,6 +152,48 @@ export default function SettingsPanel({ onClose }) {
               <option value="claude-sonnet-4-20250514">Claude Sonnet 4 (recommended)</option>
               <option value="claude-haiku-4-5-20251001">Claude Haiku 4.5 (faster)</option>
             </select>
+          </div>
+
+          {/* Persona */}
+          <div className="flex flex-col gap-2">
+            <label style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem',
+                            letterSpacing: '0.1em', color: 'var(--dust)',
+                            textTransform: 'uppercase' }}>
+              Persona
+            </label>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setPersona('companion')}
+                className="flex-1"
+                style={{
+                  padding: '0.5rem',
+                  borderRadius: '6px',
+                  border: persona === 'companion' ? '1px solid rgba(200,121,65,0.5)' : '1px solid rgba(58,54,40,0.3)',
+                  background: persona === 'companion' ? 'rgba(200,121,65,0.08)' : 'transparent',
+                  color: persona === 'companion' ? 'var(--ember)' : 'var(--stone)',
+                  fontFamily: 'var(--font-mono)', fontSize: '0.75rem', cursor: 'pointer',
+                }}
+              >
+                Companion
+              </button>
+              <button
+                onClick={() => setPersona('mirror')}
+                className="flex-1"
+                style={{
+                  padding: '0.5rem',
+                  borderRadius: '6px',
+                  border: persona === 'mirror' ? '1px solid rgba(200,121,65,0.5)' : '1px solid rgba(58,54,40,0.3)',
+                  background: persona === 'mirror' ? 'rgba(200,121,65,0.08)' : 'transparent',
+                  color: persona === 'mirror' ? 'var(--ember)' : 'var(--stone)',
+                  fontFamily: 'var(--font-mono)', fontSize: '0.75rem', cursor: 'pointer',
+                }}
+              >
+                Mirror
+              </button>
+            </div>
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--stone)' }}>
+              Companion: warm, supportive listening. Mirror: quiet reflection.
+            </p>
           </div>
 
           {/* System prompt override */}

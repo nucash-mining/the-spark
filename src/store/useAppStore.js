@@ -14,6 +14,9 @@ export const useAppStore = create(
       // System prompt override (null = use default)
       systemPromptOverride: null,
 
+      // Persona: 'mirror' (wise reflection) | 'companion' (warm emotional support)
+      persona: 'companion',
+
       // UI state
       sidebarOpen: false,
 
@@ -38,6 +41,7 @@ export const useAppStore = create(
       setModel: (model) => set({ model }),
       setUserName: (name) => set({ userName: name }),
       setSystemPromptOverride: (prompt) => set({ systemPromptOverride: prompt }),
+      setPersona: (p) => set({ persona: p }),
       toggleSidebar: () => set((s) => ({ sidebarOpen: !s.sidebarOpen })),
       setSidebarOpen: (val) => set({ sidebarOpen: val }),
 
@@ -51,6 +55,7 @@ export const useAppStore = create(
         apiKey: '',
         userName: 'Seeker',
         systemPromptOverride: null,
+        persona: 'companion',
         sidebarOpen: false,
         provider: 'claude',
         secondMeContext: null,
@@ -64,6 +69,7 @@ export const useAppStore = create(
         model:                s.model,
         userName:             s.userName,
         systemPromptOverride: s.systemPromptOverride,
+        persona:              s.persona,
         provider:             s.provider,
         secondMeUrl:          s.secondMeUrl,
         secondMeContext:      s.secondMeContext,

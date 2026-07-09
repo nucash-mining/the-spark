@@ -21,6 +21,7 @@ export async function streamMessage({
   model = 'claude-sonnet-4-20250514',
   userName = 'Seeker',
   systemPromptOverride = null,
+  persona = 'mirror',
   secondMeContext = null,
   memoryContext = null,
   messages = [],
@@ -43,7 +44,7 @@ export async function streamMessage({
       body: JSON.stringify({
         model,
         max_tokens: 1024,
-        system: buildSystemPrompt(userName, systemPromptOverride, { secondMeContext, memoryContext }),
+        system: buildSystemPrompt(userName, systemPromptOverride, { persona, secondMeContext, memoryContext }),
         stream: true,
         messages: messages.map(m => ({
           role:    m.role,
