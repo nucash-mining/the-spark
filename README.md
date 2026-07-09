@@ -38,12 +38,14 @@ npm run dev
 
 ## Android APK
 
-The repo ships a Capacitor Android project. To build the APK:
+A ready-to-install APK is attached to each [GitHub release](https://github.com/nucash-mining/the-spark/releases).
+
+The repo ships a Capacitor Android project. To build the APK yourself (requires JDK 21):
 
 ```bash
 npm run build
 npx cap sync android
-cd android && ./gradlew assembleDebug
+cd android && JAVA_HOME=<path-to-jdk-21> ./gradlew assembleDebug
 # → android/app/build/outputs/apk/debug/app-debug.apk
 ```
 
